@@ -31,7 +31,7 @@ return {
   -- wakatime
   ["wakatime/vim-wakatime"] = config("wakatime"),
   -- 按键提醒
-  ["folke/which-key.nvim"] = config("which-key"),
+  -- ["folke/which-key.nvim"] = config("which-key"),
 
   -- 优化nvim-cmp的外观
   ["onsails/lspkind.nvim"] = config("lspkind"),
