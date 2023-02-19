@@ -51,5 +51,8 @@ return {
   ["neovim/nvim-lspconfig"] = config("lspconfig"),
 
   -- markdown 预览
-  ["davidgranstrom/nvim-markdown-preview"] = config("markdown-preview")
+  ["davidgranstrom/nvim-markdown-preview"] = config("markdown-preview"),
+
+  -- 显示当前buffer的函数定义
+  ["simrat39/symbols-outline.nvim"] = config("outline"),
 }
