@@ -21,6 +21,10 @@ return {
     local lspkind = require("lspkind")
     local luasnip = require("luasnip")
 
+    -- 设置补全窗口半透明
+    vim.cmd("set pumblend=15")
+    vim.cmd("hi PmenuSel blend = 0")
+
     -- 这里的setup是针对缓冲区的补全
     cmp.setup({
 
