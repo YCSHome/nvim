@@ -51,9 +51,6 @@ M.options = {
 --   end)
 -- end
 
-M.load_pack = function(name)
-end
-
 M.run = function(config, list)
   local ok, packer = pcall(require, "packer")
   if (not ok) then

@@ -1,3 +1,7 @@
+local function config(pack_name)
+  return require("pack.config."..pack_name)
+end
+
 return {
   -- theme
   ["EdenEast/nightfox.nvim"] = {
@@ -30,10 +34,16 @@ return {
   ["onsails/lspkind.nvim"] = config("lspkind"),
   -- 补全插件
   ["hrsh7th/nvim-cmp"] = config("nvim-cmp"),
-  -- lsp 配置
-  ["neovim/nvim-lspconfig"] = config("lspconfig"),
-  -- 优化 lsp 外观
-  ["glepnir/lspsaga.nvim"] = config("lspsaga"),
   -- lua片段
   ["L3MON4D3/LuaSnip"] = config("LuaSnip"),
+
+  -- 优化 lsp 外观
+  ["glepnir/lspsaga.nvim"] = config("lspsaga"),
+
+  -- 虽然我不喜欢让它负责调教 lsp 和 dap，但是它真的太香了
+  ["williamboman/mason.nvim"] = config("mason"),
+  -- 用来配置部分 mason 的配置
+  ["williamboman/mason-lspconfig.nvim"] = config("mason-lspconfig"),
+  -- lsp 配置
+  ["neovim/nvim-lspconfig"] = config("lspconfig"),
 }

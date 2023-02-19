@@ -22,7 +22,7 @@ M.inTable = function(table, val)
 end
 
 -- 负责包装函数
-M.bind = function(fn, ...) 
+M.bind = function(fn, ...)
   local tmp = ...
   return function()
     return fn(tmp)

@@ -19,7 +19,7 @@ M.register_mode = function(name, event, opts, checker)
   opts.callback = function()
     if (checker == nil or checker()) then
       -- 若check通过了，那么就执行mode内所有加入的函数
-      for key, val in pairs(M.list[name]) do
+      for _, val in pairs(M.list[name]) do
         val()
       end
     end

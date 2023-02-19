@@ -19,11 +19,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = '\\'
 
-function config(pack_name)
-  return require("pack.config."..pack_name)
-end
-
-lazy = require("lazy")
+local lazy = require("lazy")
 
 lazy.setup(utils.init_pack(require("pack.list")), {
   root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
