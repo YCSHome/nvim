@@ -11,6 +11,9 @@ return {
   },
   ["morhetz/gruvbox"] = { lazy = true },
 
+  -- 启动页面
+  ["glepnir/dashboard-nvim"] = config("dashboard"),
+
   -- noice，优化一些奇奇怪怪的东西
   ["folke/noice.nvim"] = config("noice-nvim"),
   ["MunifTanjim/nui.nvim"] = { lazy = true },
