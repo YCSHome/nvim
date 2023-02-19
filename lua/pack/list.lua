@@ -49,4 +49,7 @@ return {
   ["williamboman/mason-lspconfig.nvim"] = config("mason-lspconfig"),
   -- lsp 配置
   ["neovim/nvim-lspconfig"] = config("lspconfig"),
+
+  -- markdown 预览
+  ["davidgranstrom/nvim-markdown-preview"] = config("markdown-preview")
 }
