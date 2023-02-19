@@ -1,6 +1,8 @@
 return {
   lazy = true,
-  cmd = {
-    "MarkdownPreview"
-  },
+  ft = {"markdown"},
+  -- lazy = true,
+  -- cmd = {
+  --   "MarkdownPreview"
+  -- },
 }
