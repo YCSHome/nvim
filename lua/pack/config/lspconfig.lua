@@ -15,6 +15,10 @@ return {
       capabilities = capabilities,
     })
 
+    lsp.pyright.setup({
+      capabilities = capabilities,
+    })
+
     lsp.lua_ls.setup({
       Lua = {
         worksapce = {

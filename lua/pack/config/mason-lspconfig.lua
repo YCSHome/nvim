@@ -6,7 +6,8 @@ return {
       -- 保证安装的东西
       ensure_installed = {
         "clangd",
-         "lua_ls",
+        "pyright",
+        "lua_ls",
       },
     })
   end
