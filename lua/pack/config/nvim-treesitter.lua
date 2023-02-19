@@ -2,7 +2,7 @@ return {
   lazy = true,
   ft = {"cpp", "c", "lua", "markdown"},
   dependencies = {
-    "nvim-ts-rainbow2"
+    "nvim-ts-rainbow"
   },
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -24,10 +24,8 @@ return {
       -- 彩虹括号，但是依赖于 ts-rainbow插件
       rainbow = {
         enable = true,
-        -- disable = {"cpp", "c", "lua", "jsx"},
-        query = 'rainbow-parens',
-        strategy = require ("ts-rainbow.strategy.global"),
-        max_file_lines = 3000,
+        extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        max_file_lines = nil, -- Do not enable for files with more than n lines, int
       }
     })
   end

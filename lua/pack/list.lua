@@ -24,7 +24,7 @@ return {
   ["kyazdani42/nvim-tree.lua"] = config("nvim-tree"),
 
   -- 为Treesitter 提供彩虹括号
-  ["HiPhish/nvim-ts-rainbow2"] = { lazy = true },
+  ["p00f/nvim-ts-rainbow"] = { lazy = true },
   -- Tresitter，很重要的高亮
   ["nvim-treesitter/nvim-treesitter"] = config("nvim-treesitter"),
 
