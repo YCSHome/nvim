@@ -4,6 +4,7 @@
 local utils = core.utils
 local hook = core.mode.hook
 local bind = utils.bind
+local uv = vim.loop
 
 require("config.mode_list")
 
@@ -101,15 +102,62 @@ hook(help_mode, bind(utils.load_config, {
 local test = nil
 
 hook(cpp_buf_mode, function()
+  -- 设置断点
+  vim.api.nvim_buf_set_keymap(0, "n", "<C-d>b", "", {noremap = true, silent = true, callback = function ()
+    require("dap").toggle_breakpoint()
+  end})
+  -- 开始调试
+  vim.api.nvim_buf_set_keymap(0, "n", "<C-d>n", "", {noremap = true, silent = true, callback = function ()
+    require("dap").continue()
+  end})
+  -- 编译代码
+  vim.api.nvim_buf_set_keymap(0, "n", "<leader><C-b>", "", {noremap = true, silent = true, callback = function ()
+    local outFile = vim.fn.expand("%:p:r")
+    local file = vim.fn.expand("%:p")
+    local stdin = uv.new_pipe()
+    local stdout = uv.new_pipe()
+    local stderr = uv.new_pipe()
+    local errorMessage = ""
+
+    print("开始编译")
+
+    local handle, pid = uv.spawn("g++", {
+      stdio = {
+        stdin,
+        stdout,
+        stderr,
+      },
+      args = {
+        file,
+        "-o",
+        outFile,
+        "-g"
+      },
+    }, function(code, signal)
+      if code ~= 0 then
+        error("编译错误" .. errorMessage)
+      else
+        print("编译完成")
+      end
+    end)
+
+    -- print(handle, pid)
+
+    uv.read_start(stderr, function(err, data)
+      if data then
+        errorMessage = errorMessage .. '\n' .. data
+      else
+      end
+    end)
+  end})
+  -- 内置终端运行
   vim.api.nvim_buf_set_keymap(0, "n", "<leader>b", ":w <CR> :cd %:h <CR> :bel 10sp term://" ..
-  "g++ % -fsanitize=address -o %< && " ..
+  "g++ % -g -o %< && " ..
   "echo build done &&" ..
   "./%<" ..
   "<CR>"
   , {noremap = true, silent = true})
-end)
-
-hook(cpp_buf_mode, function()
+  -- 玩具
   vim.api.nvim_buf_set_keymap(0, "n", "<leader>n", "", {noremap = true, silent = true, callback = function()
     if (test == nil) then
       test = require("toggleterm.terminal").Terminal:new({

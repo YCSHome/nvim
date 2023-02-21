@@ -1,8 +1,10 @@
 return {
   lazy = true,
+  ft = {"cpp", "lua", "c"},
   dependencies = {
     "cmp-nvim-lsp",
-    "mason-lspconfig.nvim",
+    -- "mason-lspconfig.nvim",
+    "lspsaga.nvim",
   },
   config = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities()

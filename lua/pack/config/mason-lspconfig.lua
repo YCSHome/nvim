@@ -1,4 +1,10 @@
 return {
+  lazy = true,
+  cmd = {
+    "Mason"
+  },
+  -- event = "VeryLazy",
+  -- enabled = false,
   config = function()
     require("mason-lspconfig").setup({
       -- 自动安装

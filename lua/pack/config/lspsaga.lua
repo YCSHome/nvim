@@ -1,9 +1,5 @@
 return {
-  opt = true,
-  dependencies = {
-    "nvim-treesitter",
-    "nvim-web-devicons",
-  },
+  lazy = true,
   config = function()
     require("lspsaga").setup({
       ui = {

@@ -22,7 +22,7 @@ code_buf_mode = rmode("code-buf-mode", {"BufEnter"}, {}, function()
 end)
 
 cpp_mode = rmode("cpp-mode", {"BufEnter", "BufWinEnter"}, {pattern = {"*.cpp", "*.hpp"}}, nil)
-cpp_buf_mode = rmode("cpp-buf-mode", {"BufEnter", "BufWinEnter"}, {pattern = {"*.cpp", "*.hpp"}}, nil)
+cpp_buf_mode = rmode("cpp-buf-mode", {"BufEnter"}, {pattern = {"*.cpp", "*.hpp"}}, nil)
 
 help_mode = rmode("help-mode", {"BufEnter", "BufWinEnter"}, {}, function()
   if (vim.bo.filetype == "help") then

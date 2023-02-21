@@ -1,12 +1,16 @@
 return {
   lazy = true,
-  ft = {"c", "cpp", "lua"},
+  -- ft = {"c", "cpp", "lua"},
+  event = {
+    "CmdlineEnter",
+    "InsertEnter",
+  },
   dependencies = {
     -- 美化
     "lspkind.nvim",
-    "lspsaga.nvim",
     -- lsp 配置
-    "nvim-lspconfig",
+    -- 后来想了想，补全不一定需要lsp
+    -- "nvim-lspconfig",
     -- 片段，以及片段源
     "LuaSnip",
     "saadparwaiz1/cmp_luasnip",

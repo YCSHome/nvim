@@ -40,19 +40,30 @@ return {
   -- lua片段
   ["L3MON4D3/LuaSnip"] = config("LuaSnip"),
 
-  -- 优化 lsp 外观
-  ["glepnir/lspsaga.nvim"] = config("lspsaga"),
-
   -- 虽然我不喜欢让它负责调教 lsp 和 dap，但是它真的太香了
   ["williamboman/mason.nvim"] = config("mason"),
   -- 用来配置部分 mason 的配置
+  -- 但是玩意太慢了
   ["williamboman/mason-lspconfig.nvim"] = config("mason-lspconfig"),
   -- lsp 配置
   ["neovim/nvim-lspconfig"] = config("lspconfig"),
+
+  -- 优化 lsp 外观
+  ["glepnir/lspsaga.nvim"] = config("lspsaga"),
 
   -- markdown 预览
   ["davidgranstrom/nvim-markdown-preview"] = config("markdown-preview"),
 
   -- 显示当前buffer的函数定义
   ["simrat39/symbols-outline.nvim"] = config("outline"),
+
+  -- 用来管理内置终端
+  ["akinsho/toggleterm.nvim"] = config("term"),
+
+  -- 我也不知道干啥用的
+  ["folke/neodev.nvim"] = config("neodev-nvim"),
+  -- 调试功能
+  ["mfussenegger/nvim-dap"] = config("dap"),
+  -- dap的UI界面
+  ["rcarriga/nvim-dap-ui"] = config("dap-ui"),
 }

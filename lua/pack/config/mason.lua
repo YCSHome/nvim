@@ -1,6 +1,7 @@
 return {
   -- 官方说不建议延时加载……
-  lazy = false,
+  lazy = true,
+  event = "VeryLazy",
   config = function()
     require("mason").setup({
       ui = {

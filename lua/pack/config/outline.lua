@@ -68,6 +68,9 @@ return {
     "SymbolsOutlineOpen",
     "SymbolsOutlineClose",
   },
+  dependencies = {
+    "nvim-lspconfig",
+  },
   config = function ()
     require("symbols-outline").setup()
   end
