@@ -103,12 +103,16 @@ local test = nil
 
 hook(cpp_buf_mode, function()
   -- 设置断点
-  vim.api.nvim_buf_set_keymap(0, "n", "<C-d>b", "", {noremap = true, silent = true, callback = function ()
+  vim.api.nvim_buf_set_keymap(0, "n", "<C-s>b", "", {noremap = true, silent = true, callback = function ()
     require("dap").toggle_breakpoint()
   end})
   -- 开始调试
-  vim.api.nvim_buf_set_keymap(0, "n", "<C-d>n", "", {noremap = true, silent = true, callback = function ()
+  vim.api.nvim_buf_set_keymap(0, "n", "<C-s>n", "", {noremap = true, silent = true, callback = function ()
     require("dap").continue()
+  end})
+  -- 关闭调试
+  vim.api.nvim_buf_set_keymap(0, "n", "<C-s>s", "", {noremap = true, silent = true, callback = function ()
+    require("dap").terminate()
   end})
   -- 编译代码
   vim.api.nvim_buf_set_keymap(0, "n", "<leader><C-b>", "", {noremap = true, silent = true, callback = function ()
@@ -161,10 +165,10 @@ hook(cpp_buf_mode, function()
   vim.api.nvim_buf_set_keymap(0, "n", "<leader>n", "", {noremap = true, silent = true, callback = function()
     if (test == nil) then
       test = require("toggleterm.terminal").Terminal:new({
-        cmd = "runner " .. vim.fn.expand("%") .. " -fsanitize=address",
+        cmd = "runner " .. vim.fn.expand("%:p") .. " -fsanitize=address",
+        dir = vim.fn.expand("%:p:h"),
         direction = "float",
         start_in_insert = false,
-        dir = vim.fn.expand("%:h"),
         float_opts = {
           relative = "editor",
           border = "rounded",

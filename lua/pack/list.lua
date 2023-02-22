@@ -52,7 +52,8 @@ return {
   ["glepnir/lspsaga.nvim"] = config("lspsaga"),
 
   -- markdown 预览
-  ["davidgranstrom/nvim-markdown-preview"] = config("markdown-preview"),
+  -- ["davidgranstrom/nvim-markdown-preview"] = config("markdown-preview"), -- 这个有显著bug
+  ["euclio/vim-markdown-composer"] = config("markdown-preview"),
 
   -- 显示当前buffer的函数定义
   ["simrat39/symbols-outline.nvim"] = config("outline"),
