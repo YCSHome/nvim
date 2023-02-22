@@ -23,8 +23,11 @@ local diagnostic = {
   },
   float = true
 }
-
-vim.diagnostic.config(diagnostic)
+for i = 1, 6 do
+  local lhs = "<leader><C-w>" .. i
+  local rhs = i .. "<C-w>w"
+  vim.keymap.set("n", lhs, rhs, { desc = "Move to window " .. i })
+end
 
 -- 
 
@@ -32,6 +35,8 @@ vim.api.nvim_create_autocmd({"BufNewFIle"}, {
   pattern = "*.cpp",
   command = "0read ~/skeleton.cpp",
 })
+
+vim.api.nvim_set_current_win();
 
 -- 设置在linux下的剪切板
 
