@@ -8,6 +8,21 @@ local uv = vim.loop
 
 require("config.mode_list")
 
+-- 设置lsp相关的sign
+
+local sign = { Error = '', Hint = 'ﴞ', Info = '', Warn = '', }
+for name_, text_ in pairs(sign) do
+  local set_sign = vim.fn.sign_define
+  local temp = "DiagnosticSign" .. name_
+  set_sign(temp, {text = text_, texthl = temp, numhl = 'DiagnosticDefault' .. name_})
+end
+
+local diagnostic = {
+  virtual_text = {
+    prefix = "",
+  },
+  float = true
+}
 for i = 1, 6 do
   local lhs = "<C-w>" .. i
   local rhs = i .. "<C-w>w"
