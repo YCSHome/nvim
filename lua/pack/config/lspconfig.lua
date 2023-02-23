@@ -4,7 +4,9 @@ return {
   dependencies = {
     "cmp-nvim-lsp",
     -- "mason-lspconfig.nvim",
+    -- 美化
     "lspsaga.nvim",
+    "trouble",
   },
   config = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities()

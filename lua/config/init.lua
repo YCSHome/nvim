@@ -8,23 +8,8 @@ local uv = vim.loop
 
 require("config.mode_list")
 
--- 设置lsp相关的sign
-
-local sign = { Error = '', Hint = 'ﴞ', Info = '', Warn = '', }
-for name_, text_ in pairs(sign) do
-  local set_sign = vim.fn.sign_define
-  local temp = "DiagnosticSign" .. name_
-  set_sign(temp, {text = text_, texthl = temp, numhl = 'DiagnosticDefault' .. name_})
-end
-
-local diagnostic = {
-  virtual_text = {
-    prefix = "",
-  },
-  float = true
-}
 for i = 1, 6 do
-  local lhs = "<leader><C-w>" .. i
+  local lhs = "<C-w>" .. i
   local rhs = i .. "<C-w>w"
   vim.keymap.set("n", lhs, rhs, { desc = "Move to window " .. i })
 end
@@ -35,8 +20,6 @@ vim.api.nvim_create_autocmd({"BufNewFIle"}, {
   pattern = "*.cpp",
   command = "0read ~/skeleton.cpp",
 })
-
-vim.api.nvim_set_current_win();
 
 -- 设置在linux下的剪切板
 

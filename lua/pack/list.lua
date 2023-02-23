@@ -67,4 +67,9 @@ return {
   ["mfussenegger/nvim-dap"] = config("dap"),
   -- dap的UI界面
   ["rcarriga/nvim-dap-ui"] = config("dap-ui"),
+
+  -- 状态栏
+  ["nvim-lualine/lualine.nvim"] = config("line"),
+
+  ["folke/trouble.nvim"] = config("trouble-nvim"),
 }
