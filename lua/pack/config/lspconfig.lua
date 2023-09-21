@@ -7,6 +7,7 @@ return {
     -- 美化
     "lspsaga.nvim",
     "trouble.nvim",
+    "lsp-colors.nvim",
   },
   config = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities()

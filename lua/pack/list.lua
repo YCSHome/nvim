@@ -4,12 +4,13 @@ end
 
 return {
   -- theme
-  ["EdenEast/nightfox.nvim"] = {
+  ["EdenEast/nightfox.nvim"] = { lazy = true, },
+  ["folke/tokyonight.nvim"] = {
     config = function()
-      vim.cmd.colorscheme("nightfox")
+      vim.cmd.colorscheme("tokyonight-night")
     end
   },
-  ["morhetz/gruvbox"] = { lazy = true },
+  -- ["morhetz/gruvaox"] = { lazy = true },
 
   -- 启动页面
   ["glepnir/dashboard-nvim"] = config("dashboard"),
@@ -71,5 +72,22 @@ return {
   -- 状态栏
   ["nvim-lualine/lualine.nvim"] = config("line"),
 
+  ["folke/lsp-colors.nvim"] = config("lspcolors"),
+
+  -- 不太好用的错误显示（也许是我没配置好
   ["folke/trouble.nvim"] = config("trouble-nvim"),
+
+  -- 文件搜索
+  ["nvim-telescope/telescope.nvim"] = config("telescope"),
+  ["nvim-lua/plenary.nvim"] = { lazy = true },
+
+  -- 跳转
+  ["folke/flash.nvim"] = config("flash"),
+
+  -- 注释
+  ["numToStr/Comment.nvim"] = config("comment"),
+
+  -- buffer页
+  ["akinsho/bufferline.nvim"] = config("bufferline"),
+  -- ["romgrk/barbar.nvim"] = config("barbar"),
 }

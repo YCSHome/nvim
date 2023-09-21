@@ -1,14 +1,15 @@
 return {
   lazy = true,
+  -- enabled = false,
   config = function()
     require("lspsaga").setup({
       ui = {
         -- Currently, only the round theme exists
-        theme = "round",
+        theme = "rounded",
         -- This option only works in Neovim 0.9
         title = true,
         -- Border type can be single, double, rounded, solid, shadow.
-        border = "solid",
+        border = "rounded",
         winblend = 0,
         expand = "",
         collapse = "",

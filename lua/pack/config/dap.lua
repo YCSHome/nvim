@@ -3,6 +3,7 @@ return {
   module = true,
   dependencies = {
     "nvim-dap-ui",
+    "lspsaga.nvim",
   },
   config = function ()
     local dap, dapui = require("dap"), require("dapui")
@@ -80,7 +81,7 @@ return {
 
         -- On windows you may have to uncomment this:
         -- detached = false,
-      }
+      },
     }
     -- fuck your cpp
     dap.configurations.cpp = {
@@ -93,6 +94,7 @@ return {
           return outFile
         end,
         cwd = '${workspaceFolder}',
+        stdio = {"input.txt"},
         stopOnEntry = false,
       }
     }

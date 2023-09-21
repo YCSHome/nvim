@@ -17,14 +17,15 @@ for name_, text_ in pairs(sign) do
   set_sign(temp, {text = text_, texthl = temp, numhl = 'DiagnosticDefault' .. name_})
 end
 
-local diagnostic = {
-  virtual_text = {
-    prefix = "",
-  },
-  float = true
-}
-for i = 1, 6 do
-  local lhs = "<C-w>" .. i
+-- local diagnostic = {
+--   virtual_text = {
+--     prefix = "",
+--   },
+--   float = true
+-- }
+
+for i = 1, 9 do
+  local lhs = "<leader>" .. i
   local rhs = i .. "<C-w>w"
   vim.keymap.set("n", lhs, rhs, { desc = "Move to window " .. i })
 end
@@ -105,19 +106,24 @@ hook(help_mode, bind(utils.load_config, {
 local test = nil
 
 hook(cpp_buf_mode, function()
+  print("set key map")
   -- 设置断点
+  pcall(vim.api.nvim_buf_del_keymap, 0, "n", "<C-s>b")
   vim.api.nvim_buf_set_keymap(0, "n", "<C-s>b", "", {noremap = true, silent = true, callback = function ()
     require("dap").toggle_breakpoint()
   end})
   -- 开始调试
+  pcall(vim.api.nvim_buf_del_keymap, 0, "n", "<C-s>n")
   vim.api.nvim_buf_set_keymap(0, "n", "<C-s>n", "", {noremap = true, silent = true, callback = function ()
     require("dap").continue()
   end})
   -- 关闭调试
+  pcall(vim.api.nvim_buf_del_keymap, 0, "n", "<C-s>s")
   vim.api.nvim_buf_set_keymap(0, "n", "<C-s>s", "", {noremap = true, silent = true, callback = function ()
     require("dap").terminate()
   end})
   -- 编译代码
+  pcall(vim.api.nvim_buf_del_keymap, 0, "n", "<leader><C-b>")
   vim.api.nvim_buf_set_keymap(0, "n", "<leader><C-b>", "", {noremap = true, silent = true, callback = function ()
     local outFile = vim.fn.expand("%:p:r")
     local file = vim.fn.expand("%:p")
@@ -158,17 +164,19 @@ hook(cpp_buf_mode, function()
     end)
   end})
   -- 内置终端运行
+  pcall(vim.api.nvim_buf_del_keymap, 0, "n", "<leader>b")
   vim.api.nvim_buf_set_keymap(0, "n", "<leader>b", ":w <CR> :cd %:h <CR> :bel 10sp term://" ..
-  "g++ % -g -o %< && " ..
+  "g++ % -g -o %< -fsanitize=undefined,address && " ..
   "echo build done &&" ..
-  "./%<" ..
+  "./%< < input.txt" ..
   "<CR>"
   , {noremap = true, silent = true})
   -- 玩具
+  pcall(vim.api.nvim_buf_del_keymap, 0, "n", "<leader>n")
   vim.api.nvim_buf_set_keymap(0, "n", "<leader>n", "", {noremap = true, silent = true, callback = function()
     if (test == nil) then
       test = require("toggleterm.terminal").Terminal:new({
-        cmd = "runner " .. vim.fn.expand("%:p") .. " -fsanitize=address",
+        cmd = "runner " .. vim.fn.expand("%:p") .. " -fsanitize=undefined,address",
         dir = vim.fn.expand("%:p:h"),
         direction = "float",
         start_in_insert = false,
@@ -215,3 +223,36 @@ hook(cpp_buf_mode, function()
     test:toggle()
   end})
 end)
+
+-- 设置 telescope 的快捷键
+-- local builtin = require('telescope.builtin')
+-- local set_keymap = vim.api.set_keymap
+vim.api.nvim_set_keymap("n", "<leader>ff", "", {noremap = true, silent = true, callback = function()
+  require("telescope.builtin").find_files()
+end})
+vim.api.nvim_set_keymap("n", "<leader>fg", "", {noremap = true, silent = true, callback = function()
+  require("telescope.builtin").live_grep()
+end})
+vim.api.nvim_set_keymap("n", "<leader>fb", "", {noremap = true, silent = true, callback = function()
+  require("telescope.builtin").buffers()
+end})
+vim.api.nvim_set_keymap("n", "<leader>fh", "", {noremap = true, silent = true, callback = function()
+  require("telescope.builtin").help_tags()
+end})
+-- vim.keymap.set('n', '<leader>ff', require('telescope.builtin').builtin.find_files, {})
+-- vim.keymap.set('n', '<leader>fg', require('telescope.builtin').builtin.live_grep, {})
+-- vim.keymap.set('n', '<leader>fb', require('telescope.builtin').builtin.buffers, {})
+-- vim.keymap.set('n', '<leader>fh', require('telescope.builtin').builtin.help_tags, {})
+vim.o.splitright = true
+vim.o.splitbelow = true
+
+-- 设置gA gI go等常用快捷键（编写markdown时会用）
+vim.api.nvim_set_keymap("n", "gA", "g$a", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "gI", "g^i", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "go", "gA<CR>", {noremap = false, silent = true})
+
+vim.api.nvim_set_keymap("n", "j", "gj", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "k", "gk", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "o", "go", {noremap = false, silent = true})
+vim.api.nvim_set_keymap("n", "I", "gI", {noremap = false, silent = true})
+vim.api.nvim_set_keymap("n", "A", "gA", {noremap = false, silent = true})
